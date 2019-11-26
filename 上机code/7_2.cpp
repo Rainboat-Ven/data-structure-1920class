@@ -2,13 +2,13 @@
 #include<fstream>
 using namespace std;
 
-#define MAX_VERTEX_NUM 20//×î´ó¶¥µã¸öÊı
+#define MAX_VERTEX_NUM 20//æœ€å¤§é¡¶ç‚¹ä¸ªæ•°
 
 typedef struct {
-	char vexs[MAX_VERTEX_NUM];//¶¥µãÏòÁ¿	
-	int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];//ÁÚ½Ó¾ØÕó	
+	char vexs[MAX_VERTEX_NUM];//é¡¶ç‚¹å‘é‡	
+	int arcs[MAX_VERTEX_NUM][MAX_VERTEX_NUM];//é‚»æ¥çŸ©é˜µ	
 	int vexnum, arcnum;
-	//Í¼µÄÖÖÀàÎª´øÈ¨ÓĞÏòÍ¼£¬¶¥µãÎªµ¥¸ö×Ö·û£¬-1´ú±í»¡²»´æÔÚ
+	//å›¾çš„ç§ç±»ä¸ºå¸¦æƒæœ‰å‘å›¾ï¼Œé¡¶ç‚¹ä¸ºå•ä¸ªå­—ç¬¦ï¼Œ-1ä»£è¡¨å¼§ä¸å­˜åœ¨
 }MGraph;
 
 int FindVexs(MGraph* M, char a) {
@@ -22,15 +22,15 @@ int FindVexs(MGraph* M, char a) {
 
 int main() {
 	ifstream start;
-	start.open("C:\\Users\\15898\\OneDrive - nuaa.edu.cn\\study\\Êı¾İ½á¹¹\\code\\061700105-·ëÓêÖÛ-µÚÆß´ÎÉÏ»ú\\start.txt", ios::in);
+	start.open("start.txt", ios::in);
 	if (!start.is_open()) {
-		cout << "\nÎÄ¼ş´ò¿ªÊ§°Ü\n";
+		cout << "\næ–‡ä»¶æ‰“å¼€å¤±è´¥\n";
 		exit(1);
 	}
 	MGraph* M = (MGraph*)malloc(sizeof(MGraph));
 	M->vexnum = 0;
 	M->arcnum = 0;
-	//ÎÄ¼şµÚÒ»ĞĞÊÇ¶¥µãĞÅÏ¢
+	//æ–‡ä»¶ç¬¬ä¸€è¡Œæ˜¯é¡¶ç‚¹ä¿¡æ¯
 	char now;
 	now = start.get();
 	int n = 0;
@@ -42,7 +42,7 @@ int main() {
 		}
 		now = start.get();
 	}
-	//ÎÄ¼şÖ®ºóÊÇÁÚ½Ó¾ØÕó
+	//æ–‡ä»¶ä¹‹åæ˜¯é‚»æ¥çŸ©é˜µ
 	int info;
 	int i, j;
 	while (!start.eof()) {
@@ -56,19 +56,19 @@ int main() {
 		}
 	}
 	//Dijkstra===========================================================
-	cout << "ÊäÈëÒªÇóµÄ¶¥µã£º" << endl;
+	cout << "è¾“å…¥è¦æ±‚çš„é¡¶ç‚¹ï¼š" << endl;
 	char s1;
 	int i1;
 	cin >> s1;
 	i1 = FindVexs(M, s1);
 	if (i1 == -1) {
-		cout << "\nÊäÈë¶¥µã²»´æÔÚ\n";
+		cout << "\nè¾“å…¥é¡¶ç‚¹ä¸å­˜åœ¨\n";
 		exit(1);
 	}
 	int D[MAX_VERTEX_NUM] ;
 	bool final_[MAX_VERTEX_NUM];
 	bool P[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	for (i = 0; i < M->vexnum; i++) {
 		D[i] = M->arcs[i1][i];
 		final_[i] = false;
@@ -106,7 +106,7 @@ int main() {
 	}
 
 	for (i = 0; i < n; i++) {
-		cout << s1 << "-->" << M->vexs[i] << "£º";
+		cout << s1 << "-->" << M->vexs[i] << "ï¼š";
 		for (j = 0; j < n; j++) {
 			if (P[i][j]) {
 				cout << M->vexs[j] << ' ';
